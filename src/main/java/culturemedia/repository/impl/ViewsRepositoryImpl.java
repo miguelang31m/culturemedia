@@ -8,15 +8,15 @@ import culturemedia.repository.ViewsRepository;
 
 public class ViewsRepositoryImpl implements ViewsRepository {
 
-    private final List<Reproduccion> views;
+    private final List<Reproduccion> reproducciones;
 
     public ViewsRepositoryImpl() {
-        this.views = new ArrayList<>();
+        this.reproducciones = new ArrayList<>();
     }
 
     @Override
-    public Reproduccion save(Reproduccion view) {
-        this.views.add(view);
-        return view;
+    public Reproduccion agregar(Reproduccion reproduccion) {  // Implementación del método agregar
+        this.reproducciones.add(reproduccion);
+        return reproduccion;
     }
 }

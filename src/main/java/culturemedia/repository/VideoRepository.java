@@ -5,6 +5,7 @@ import java.util.List;
 
 public interface VideoRepository {
     List<Video> findAll();
-    void save(Video video);
-    Video findByTitle(String title);
+    Video save(Video video);
+    List<Video> buscarPorTitulo(String titulo);  // Método en español
+    List<Video> buscarPorDuracion(Double duracionDesde, Double duracionHasta); // Método en español
 }

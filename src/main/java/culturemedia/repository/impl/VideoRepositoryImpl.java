@@ -26,13 +26,10 @@ public class VideoRepositoryImpl implements VideoRepository {
     }
 
     @Override
-    public List<Video> find(String title) {
-        List<Video> filteredVideos = null;
+    public List<Video> buscarPorTitulo(String titulo) {  // Implementación de buscarPorTitulo
+        List<Video> filteredVideos = new ArrayList<>();
         for (Video video : videos) {
-            if (title.equals(video.getTitle())) {
-                if (filteredVideos == null) {
-                    filteredVideos = new ArrayList<>();
-                }
+            if (video.getTitulo().contains(titulo)) {  // Usamos contains para coincidencias parciales
                 filteredVideos.add(video);
             }
         }
@@ -40,10 +37,10 @@ public class VideoRepositoryImpl implements VideoRepository {
     }
 
     @Override
-    public List<Video> find(Double fromDuration, Double toDuration) {
+    public List<Video> buscarPorDuracion(Double duracionDesde, Double duracionHasta) {  // Implementación de buscarPorDuracion
         List<Video> filteredVideos = new ArrayList<>();
         for (Video video : videos) {
-            if (video.getDuration() > fromDuration && video.getDuration() < toDuration) {
+            if (video.getDuracion() >= duracionDesde && video.getDuracion() <= duracionHasta) {  // Incluye límites
                 filteredVideos.add(video);
             }
         }
