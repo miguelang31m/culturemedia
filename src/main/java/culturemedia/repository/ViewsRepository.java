@@ -3,5 +3,5 @@ package culturemedia.repository;
 import culturemedia.model.Reproduccion;
 
 public interface ViewsRepository {
-    void agregar(Reproduccion reproduccion);
+    Reproduccion agregar(Reproduccion reproduccion);  // Método para agregar una reproducción
 }
