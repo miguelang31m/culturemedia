@@ -6,7 +6,6 @@ import culturemedia.model.Reproduccion;
 import culturemedia.repository.VideoRepository;
 import culturemedia.repository.ViewsRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CulturemediaService {
@@ -19,6 +18,7 @@ public class CulturemediaService {
         this.viewsRepository = viewsRepository;
     }
 
+    // Método para obtener todos los videos o lanzar excepción si no hay ninguno
     public List<Video> findAll() throws VideoNotFoundException {
         List<Video> videos = videoRepository.findAll();
         if (videos.isEmpty()) {
@@ -27,34 +27,28 @@ public class CulturemediaService {
         return videos;
     }
 
+    // Método para encontrar videos por título
     public List<Video> findByTitle(String title) throws VideoNotFoundException {
-        List<Video> filteredVideos = new ArrayList<>();
-        for (Video video : videoRepository.findAll()) {
-            if (video.getTitulo().toLowerCase().contains(title.toLowerCase())) {
-                filteredVideos.add(video);
-            }
-        }
-        if (filteredVideos.isEmpty()) {
+        List<Video> videos = videoRepository.buscarPorTitulo(title);
+        if (videos == null || videos.isEmpty()) {
             throw new VideoNotFoundException(title);
         }
-        return filteredVideos;
+        return videos;
     }
 
-    public List<Video> findByDuration(Double fromDuration, Double toDuration) throws VideoNotFoundException {
-        List<Video> filteredVideos = new ArrayList<>();
-        for (Video video : videoRepository.findAll()) {
-            if (video.getDuracion() >= fromDuration && video.getDuracion() <= toDuration) {
-                filteredVideos.add(video);
-            }
+    // Método para encontrar videos por rango de duración con ajuste de excepción
+    public List<Video> findByDuration(double fromDuration, double toDuration) throws VideoNotFoundException {
+        List<Video> videos = videoRepository.buscarPorDuracion(fromDuration, toDuration);
+        if (videos == null || videos.isEmpty()) {
+            throw new VideoNotFoundException(fromDuration, toDuration);  // Nuevo constructor
         }
-        if (filteredVideos.isEmpty()) {
-            throw new VideoNotFoundException();
-        }
-        return filteredVideos;
+        return videos;
     }
 
-    public void save(Video video) {
+    // Método para guardar un video y devolverlo
+    public Video save(Video video) {
         videoRepository.save(video);
+        return video; // Devuelve el objeto guardado
     }
 
     public void save(Reproduccion reproduccion) {
