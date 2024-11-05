@@ -36,13 +36,11 @@ public class CulturemediaService {
         return videos;
     }
 
-    // Método para guardar un video en el repositorio y devolver el objeto Video guardado
-    public Video save(Video video) {
+    // Otros métodos del servicio, como guardar video y reproducciones
+    public void save(Video video) {
         videoRepository.save(video);
-        return video;  // Devolvemos el video guardado
     }
 
-    // Método para guardar una reproducción en el repositorio de vistas
     public void save(Reproduccion reproduccion) {
         viewsRepository.agregar(reproduccion);
     }
