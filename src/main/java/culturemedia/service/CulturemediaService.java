@@ -36,9 +36,19 @@ public class CulturemediaService {
         return videos;
     }
 
-    // Otros métodos del servicio, como guardar video y reproducciones
-    public void save(Video video) {
+    // Método para encontrar videos por rango de duración con ajuste de excepción
+    public List<Video> findByDuration(double fromDuration, double toDuration) throws VideoNotFoundException {
+        List<Video> videos = videoRepository.buscarPorDuracion(fromDuration, toDuration);
+        if (videos == null || videos.isEmpty()) {
+            throw new VideoNotFoundException(fromDuration, toDuration);  // Nuevo constructor
+        }
+        return videos;
+    }
+
+    // Método para guardar un video y devolverlo
+    public Video save(Video video) {
         videoRepository.save(video);
+        return video; // Devuelve el objeto guardado
     }
 
     public void save(Reproduccion reproduccion) {
