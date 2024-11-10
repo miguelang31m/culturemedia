@@ -5,9 +5,11 @@ import culturemedia.model.Video;
 import culturemedia.model.Reproduccion;
 import culturemedia.repository.VideoRepository;
 import culturemedia.repository.ViewsRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service // Anotación para que Spring gestione esta clase como un bean de servicio
 public class CulturemediaService {
 
     private final VideoRepository videoRepository;
@@ -36,19 +38,18 @@ public class CulturemediaService {
         return videos;
     }
 
-    // Método para encontrar videos por rango de duración con ajuste de excepción
+    // Método para encontrar videos por duración en un rango específico
     public List<Video> findByDuration(double fromDuration, double toDuration) throws VideoNotFoundException {
         List<Video> videos = videoRepository.buscarPorDuracion(fromDuration, toDuration);
         if (videos == null || videos.isEmpty()) {
-            throw new VideoNotFoundException(fromDuration, toDuration);  // Nuevo constructor
+            throw new VideoNotFoundException("No videos found within the specified duration range.");
         }
         return videos;
     }
 
     // Método para guardar un video y devolverlo
     public Video save(Video video) {
-        videoRepository.save(video);
-        return video; // Devuelve el objeto guardado
+        return videoRepository.save(video); // Retorna el video guardado
     }
 
     public void save(Reproduccion reproduccion) {
