@@ -49,7 +49,7 @@ public class CulturemediaService {
 
     // Método para guardar un video y devolverlo
     public Video save(Video video) {
-        return videoRepository.save(video); // Ahora retorna el video guardado
+        return videoRepository.save(video); // Retorna el video guardado
     }
 
     public void save(Reproduccion reproduccion) {

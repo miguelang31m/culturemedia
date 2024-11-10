@@ -1,6 +1,6 @@
 package culturemedia.controllers;
 
-import java.util.List;
+import java.util.*;
 import culturemedia.exception.VideoNotFoundException;
 import culturemedia.model.Video;
 import culturemedia.service.CulturemediaService;
@@ -22,7 +22,7 @@ public class CultureMediaController {
     // Método para listar todos los videos, lanzará VideoNotFoundException si no se encuentran videos
     @GetMapping // Define que este método responde a solicitudes GET
     public List<Video> findAllVideos() throws VideoNotFoundException {
-        return culturemediaService.findAll(); // Llama al método findAll del servicio
+        return culturemediaService.findAll();
     }
 
     // Método para agregar un nuevo video a través del servicio
