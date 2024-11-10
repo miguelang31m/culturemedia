@@ -5,7 +5,9 @@ import java.util.List;
 
 import culturemedia.model.Video;
 import culturemedia.repository.VideoRepository;
+import org.springframework.stereotype.Component;
 
+@Component // Esta anotación permite que Spring detecte esta clase como un bean
 public class VideoRepositoryImpl implements VideoRepository {
 
     private final List<Video> videos;

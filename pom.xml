@@ -8,6 +8,14 @@
     <artifactId>culturemedia</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!-- Spring Boot Parent -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.5</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
@@ -15,6 +23,12 @@
     </properties>
 
     <dependencies>
+        <!-- Spring Boot Web Starter for REST APIs -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
         <!-- Testing Dependencies -->
         <!-- JUnit Jupiter API and Engine for testing -->
         <dependency>
